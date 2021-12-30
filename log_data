@@ -1,0 +1,41 @@
+import logging
+
+logging.basicConfig(filename='sample.log',
+                    level=logging.INFO,
+                    format="%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s"
+                    )
+
+if_continue = 'yes'
+
+try:
+    while if_continue == 'yes':
+        f_num = float(input('введите первое число : '))
+        oper = input('введите действие : ')
+        s_num = float(input('введите второе число : '))
+        sum = None
+        if oper == '+':
+            sum = f_num + s_num
+            print(f'результат действие {f_num} {oper} {s_num} = {sum}')
+        elif oper == '-':
+            sum = f_num - s_num
+            print(f'результат действие {f_num} {oper} {s_num} = {sum}')
+        elif oper == '*':
+            sum = f_num * s_num
+            print(f'результат действие {f_num} {oper} {s_num} = {sum}')
+        elif oper == '/':
+            sum = f_num / s_num
+            print(f'результат действие {f_num} {oper} {s_num} = {sum}')
+        else:
+            print('неопределенное действие:')
+
+        if_continue = input("введите 'yes' чтобы продолжит,или любую клавишу чтобы завершить : ")
+        logging.info(f'результат действие {f_num} {oper} {s_num} = {sum}')
+
+
+except ZeroDivisionError:
+    print('аварийное завершение программы , деление на 0 не допустимо : ')
+    logging.info('аварийное завершение программы , деление на 0 не допустимо : ')
+
+except ValueError:
+    print('аварийное завершение программы, неопределенное действие : ')
+    logging.info('аварийное завершение программы , неопределенное действие : ')
